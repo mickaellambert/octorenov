@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
 use App\Enum\OfferStatus;
-use App\Repository\OfferRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OfferRepository;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Offer
 {
     #[ORM\Id]
@@ -20,6 +22,12 @@ class Offer
     #[ORM\Column(type: 'integer', enumType: OfferStatus::class)]
     private OfferStatus $status = OfferStatus::PENDING;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+    
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Job $job = null;
@@ -55,6 +63,29 @@ class Offer
         $this->status = $status;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAt(): void
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+    
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getJob(): ?Job

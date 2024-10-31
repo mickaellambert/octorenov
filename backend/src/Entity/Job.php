@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
 use App\Enum\JobStatus;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\JobRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: JobRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Job
 {
     #[ORM\Id]
@@ -25,6 +27,12 @@ class Job
 
     #[ORM\Column(type: 'integer', enumType: JobStatus::class)]
     private JobStatus $status = JobStatus::PENDING;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'jobs')]
     #[ORM\JoinColumn(nullable: false)]
@@ -80,6 +88,29 @@ class Job
         $this->status = $status;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAt(): void
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+    
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getCustomer(): ?Customer
