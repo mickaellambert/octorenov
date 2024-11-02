@@ -17,10 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
-        new GetCollection(),
-        new Get(),
-        new Post(),
-        new Put()
+        new Post(description: "Submit a new offer for a job."),
     ],
     normalizationContext: ['groups' => ['offer:read']],
     denormalizationContext: ['groups' => ['offer:write']]
