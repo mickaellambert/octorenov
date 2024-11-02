@@ -12,18 +12,24 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: JobRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
+        new GetCollection(
+            description: "Retrieve a list of jobs with optional filtering by status."
+        ),
     ],
     normalizationContext: ['groups' => ['job:read']],
     denormalizationContext: ['groups' => ['job:write']]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['status' => 'exact'])]
 class Job
 {
     #[ORM\Id]
