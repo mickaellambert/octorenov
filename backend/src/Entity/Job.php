@@ -9,33 +9,52 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\JobRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: JobRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ApiResource(
+    operations: [
+    ],
+    normalizationContext: ['groups' => ['job:read']],
+    denormalizationContext: ['groups' => ['job:write']]
+)]
 class Job
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['job:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['job:read', 'job:write'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['job:read', 'job:write'])]
     private ?string $description = null;
 
     #[ORM\Column(type: 'integer', enumType: JobStatus::class)]
+    #[Groups(['job:read', 'job:write'])]
     private JobStatus $status = JobStatus::PENDING;
 
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Groups(['job:read'])]
     private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    #[Groups(['job:read'])]
     private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'jobs')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['job:read', 'job:write'])]
     private ?Customer $customer = null;
 
     /**

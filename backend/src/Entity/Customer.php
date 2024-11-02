@@ -7,18 +7,27 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
+#[ApiResource(
+    operations: [new Get()],
+    normalizationContext: ['groups' => ['customer:read']]
+)]
 class Customer
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['customer:read'])]
     private ?int $id = null;
 
     #[Assert\NotBlank]
     #[Assert\Length(max: 100)]
     #[ORM\Column(length: 100)]
+    #[Groups(['customer:read', 'job:read'])]
     private ?string $name = null;
 
     #[Assert\NotBlank]

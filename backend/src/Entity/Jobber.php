@@ -6,19 +6,29 @@ use App\Repository\JobberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: JobberRepository::class)]
+#[ApiResource(
+    operations: [new Get()],
+    normalizationContext: ['groups' => ['jobber:read']]
+)]
 class Jobber
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(groups: ['jobber:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(groups: ['jobber:read'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Groups(groups: ['jobber:read'])]
     private ?string $email = null;
 
     /**
