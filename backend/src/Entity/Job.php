@@ -25,6 +25,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new GetCollection(
             description: "Retrieve a list of jobs with optional filtering by status."
         ),
+        new Post(
+            description: "Create a new job and associate it with a customer."
+        ),
     ],
     normalizationContext: ['groups' => ['job:read']],
     denormalizationContext: ['groups' => ['job:write']]
