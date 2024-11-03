@@ -4,20 +4,23 @@ namespace App\Entity;
 
 use DateTimeImmutable;
 use App\Enum\OfferStatus;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Post;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\OfferRepository;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
+use App\State\Processor\OfferUpdateProcessor;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
-        new Post(description: "Submit a new offer for a job."),
+        new Put(
+            description: 'Update the offer, including its status.',
+            processor: OfferUpdateProcessor::class
+        ),
     ],
     normalizationContext: ['groups' => ['offer:read']],
     denormalizationContext: ['groups' => ['offer:write']]
