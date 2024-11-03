@@ -10,7 +10,6 @@ use App\Repository\JobRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -23,13 +22,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new GetCollection(
-            description: "Retrieve a list of jobs with optional filtering by status."
+            description: 'Retrieve a list of jobs with optional filtering by status.'
         ),
         new Get(
-            description: "Retrieve detailed information about a specific job."
+            description: 'Retrieve detailed information about a specific job.'
         ),
         new Post(
-            description: "Create a new job and associate it with a customer."
+            description: 'Create a new job and associate it with a customer.'
         ),
     ],
     normalizationContext: ['groups' => ['job:read']],
@@ -73,6 +72,7 @@ class Job
      * @var Collection<int, Offer>
      */
     #[ORM\OneToMany(targetEntity: Offer::class, mappedBy: 'job')]
+    #[Groups(['job:read'])]
     private Collection $offers;
 
     public function __construct()

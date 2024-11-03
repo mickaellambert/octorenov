@@ -17,6 +17,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
+        new Get(
+            description: 'Retrieve detailed information about a specific offer.'
+        ),
+        new Post(
+            description: 'Submit a new offer for a job.'
+        ),
         new Put(
             description: 'Update the offer, including its status.',
             processor: OfferUpdateProcessor::class
