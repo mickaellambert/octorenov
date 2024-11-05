@@ -1,0 +1,764 @@
+{
+	"info": {
+		"_postman_id": "605ebcae-6ae5-4b4a-9f6a-a125d1f15e09",
+		"name": "API Octorenov",
+		"description": "API pour la gestion des jobs et offres de la plateforme Octorenov",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4737023"
+	},
+	"item": [
+		{
+			"name": "Job",
+			"item": [
+				{
+					"name": "Get all Jobs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/jobs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						},
+						"description": "### Request\n\n- Method: GET\n    \n- URL: `/api/jobs`\n    \n- Query Parameters:\n    \n    - status: 1\n        \n\n### Response\n\nThe API returns a JSON response with a status code of 200 and Content-Type of application/ld+json.\n\nThe response body includes the following structure:\n\n- totalItems: The total number of items in the response.\n    \n- member: An array of job objects, each containing id, title, description, status, createdAt, updatedAt, and customer details.\n    \n- view: Contains information about the view.\n    \n- search: Contains information about the search template and mapping.\n    \n\nYou can look at the example to see what a succesfull response will look like"
+					},
+					"response": [
+						{
+							"name": "Pending jobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/ld+json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/jobs?status=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Location",
+									"value": "/api/jobs.jsonld?status=1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Nov 2024 01:44:32 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"b11307e34c8057c6\""
+								},
+								{
+									"key": "Link",
+									"value": "<http://localhost:8000/api/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "deny"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/api/contexts/Job\",\n    \"@id\": \"/api/jobs\",\n    \"@type\": \"Collection\",\n    \"totalItems\": 6,\n    \"member\": [\n        {\n            \"@id\": \"/api/jobs/1\",\n            \"@type\": \"Job\",\n            \"id\": 1,\n            \"title\": \"Epidemiologist\",\n            \"description\": \"Aperiam molestiae molestiae qui magni accusamus ipsa asperiores voluptatem.\",\n            \"status\": 1,\n            \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n            \"updatedAt\": \"2024-10-31T12:01:39+00:00\",\n            \"customer\": {\n                \"@id\": \"/api/customers/5\",\n                \"@type\": \"Customer\",\n                \"name\": \"Sheridan Kertzmann II\"\n            }\n        },\n        {\n            \"@id\": \"/api/jobs/2\",\n            \"@type\": \"Job\",\n            \"id\": 2,\n            \"title\": \"Welfare Eligibility Clerk\",\n            \"description\": \"Iure error sit beatae aut autem fuga.\",\n            \"status\": 1,\n            \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n            \"updatedAt\": \"2024-10-31T12:01:39+00:00\",\n            \"customer\": {\n                \"@id\": \"/api/customers/5\",\n                \"@type\": \"Customer\",\n                \"name\": \"Sheridan Kertzmann II\"\n            }\n        },\n        {\n            \"@id\": \"/api/jobs/3\",\n            \"@type\": \"Job\",\n            \"id\": 3,\n            \"title\": \"Chemical Technician\",\n            \"description\": \"Non explicabo tempora iste ipsa deserunt et provident.\",\n            \"status\": 1,\n            \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n            \"updatedAt\": \"2024-10-31T12:01:39+00:00\",\n            \"customer\": {\n                \"@id\": \"/api/customers/4\",\n                \"@type\": \"Customer\",\n                \"name\": \"Onie Smitham Sr.\"\n            }\n        },\n        {\n            \"@id\": \"/api/jobs/4\",\n            \"@type\": \"Job\",\n            \"id\": 4,\n            \"title\": \"Butcher\",\n            \"description\": \"Recusandae voluptatibus et molestias non.\",\n            \"status\": 1,\n            \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n            \"updatedAt\": \"2024-10-31T12:01:39+00:00\",\n            \"customer\": {\n                \"@id\": \"/api/customers/1\",\n                \"@type\": \"Customer\",\n                \"name\": \"Miss Providenci Berge DVM\"\n            }\n        },\n        {\n            \"@id\": \"/api/jobs/5\",\n            \"@type\": \"Job\",\n            \"id\": 5,\n            \"title\": \"Agricultural Technician\",\n            \"description\": \"Et velit fuga exercitationem officia.\",\n            \"status\": 1,\n            \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n            \"updatedAt\": \"2024-10-31T12:01:39+00:00\",\n            \"customer\": {\n                \"@id\": \"/api/customers/1\",\n                \"@type\": \"Customer\",\n                \"name\": \"Miss Providenci Berge DVM\"\n            }\n        },\n        {\n            \"@id\": \"/api/jobs/6\",\n            \"@type\": \"Job\",\n            \"id\": 6,\n            \"title\": \"Gardening Assistance\",\n            \"description\": \"Looking for help with garden maintenance.\",\n            \"status\": 1,\n            \"createdAt\": \"2024-11-02T01:36:54+00:00\",\n            \"updatedAt\": \"2024-11-02T01:36:54+00:00\",\n            \"customer\": {\n                \"@id\": \"/api/customers/1\",\n                \"@type\": \"Customer\",\n                \"name\": \"Miss Providenci Berge DVM\"\n            }\n        }\n    ],\n    \"view\": {\n        \"@id\": \"/api/jobs?status=1\",\n        \"@type\": \"PartialCollectionView\"\n    },\n    \"search\": {\n        \"@type\": \"IriTemplate\",\n        \"template\": \"/api/jobs{?status,status[]}\",\n        \"variableRepresentation\": \"BasicRepresentation\",\n        \"mapping\": [\n            {\n                \"@type\": \"IriTemplateMapping\",\n                \"variable\": \"status\",\n                \"property\": \"status\",\n                \"required\": false\n            },\n            {\n                \"@type\": \"IriTemplateMapping\",\n                \"variable\": \"status[]\",\n                \"property\": \"status\",\n                \"required\": false\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Job details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/jobs/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"2"
+							]
+						},
+						"description": "### Retrieve Job Details\n\nThis endpoint makes an HTTP GET request to retrieve details of a specific job.\n\n#### Request\n\n- Method: GET\n    \n- URL: `/api/jobs/{id}`\n    \n\n#### Response\n\nThe API returns a JSON response with a status code of 200 and Content-Type of application/ld+json.\n\nThe response will have the following structure:\n\n- `id` (number): The numeric ID of the job.\n    \n- `title` (string): The title of the job.\n    \n- `description` (string): The description of the job.\n    \n- `status` (number): The status of the job.\n    \n- `createdAt` (string): The timestamp when the job was created.\n    \n- `updatedAt` (string): The timestamp when the job was last updated.\n    \n- `customer` (object): An object containing customer details\n    \n\nYou can look at the example to see what a succesfull response will look like"
+					},
+					"response": [
+						{
+							"name": "A job",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/ld+json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/jobs/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"jobs",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Location",
+									"value": "/api/jobs/1.jsonld"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Nov 2024 01:43:31 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"145720f3e17e185e\""
+								},
+								{
+									"key": "Link",
+									"value": "<http://localhost:8000/api/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "deny"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Content-Length",
+									"value": "378"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/api/contexts/Job\",\n    \"@id\": \"/api/jobs/1\",\n    \"@type\": \"Job\",\n    \"id\": 1,\n    \"title\": \"Epidemiologist\",\n    \"description\": \"Aperiam molestiae molestiae qui magni accusamus ipsa asperiores voluptatem.\",\n    \"status\": 1,\n    \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n    \"updatedAt\": \"2024-10-31T12:01:39+00:00\",\n    \"customer\": {\n        \"@id\": \"/api/customers/5\",\n        \"@type\": \"Customer\",\n        \"name\": \"Sheridan Kertzmann II\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create a Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Gardening Assistance\",\n    \"description\": \"Looking for help with garden maintenance.\",\n    \"customer\": \"/api/customers/1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/jobs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						},
+						"description": "### Add Job\n\nThis endpoint allows you to add a new job by providing the job title, description, and customer details.\n\n#### Request\n\n- Method: POST\n    \n- URL: `/api/jobs`\n    \n\n##### Body\n\n- `title`: (string) The title of the job.\n    \n- `description`: (string) A description of the job.\n    \n- `customer`: (string) The customer's API endpoint.\n    \n\n#### Response\n\nThe API returns a JSON response with a status code of 200 and Content-Type of application/ld+json.\n\nThe response body includes the following structure:\n\n- `id`: (integer) The ID of the newly created job.\n    \n- `title`: (string) The title of the job.\n    \n- `description`: (string) A description of the job.\n    \n- `status`: (integer) The status of the job.\n    \n- `createdAt`: (string) The timestamp of when the job was created.\n    \n- `updatedAt`: (string) The timestamp of when the job was last updated.\n    \n- `customer`: (object) An object containing customer details including their name.\n    \n\nNote: The actual customer details will be returned in the response.\n\nYou can look at the example to see what a succesfull response will look like"
+					},
+					"response": [
+						{
+							"name": "New job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Gardening Assistance\",\n    \"description\": \"Looking for help with garden maintenance.\",\n    \"customer\": \"/api/customers/1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/jobs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"jobs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Location",
+									"value": "/api/jobs/7.jsonld"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Nov 2024 01:44:49 GMT"
+								},
+								{
+									"key": "Link",
+									"value": "<http://localhost:8000/api/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "Location",
+									"value": "/api/jobs/7"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "deny"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Content-Length",
+									"value": "354"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/api/contexts/Job\",\n    \"@id\": \"/api/jobs/7\",\n    \"@type\": \"Job\",\n    \"id\": 7,\n    \"title\": \"Gardening Assistance\",\n    \"description\": \"Looking for help with garden maintenance.\",\n    \"status\": 1,\n    \"createdAt\": \"2024-11-02T01:44:49+00:00\",\n    \"updatedAt\": \"2024-11-02T01:44:49+00:00\",\n    \"customer\": {\n        \"@id\": \"/api/customers/1\",\n        \"@type\": \"Customer\",\n        \"name\": \"Miss Providenci Berge DVM\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Offer",
+			"item": [
+				{
+					"name": "Get Offer details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/offers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"offers",
+								"1"
+							]
+						},
+						"description": "### Get Offer Details\n\nThis endpoint retrieves the details of a specific offer.\n\n#### Request\n\n- Method: GET\n    \n- URL: `/api/offers/{id}`\n    \n\n#### Response\n\nThe API returns a JSON response with a status code of 200 and Content-Type of application/ld+json.\n\nThe response body includes the following structure:\n\n- `id` (number): The numeric ID of the offer.\n    \n- `amount` (number): The amount of the offer.\n    \n- `status` (number): The status of the offer.\n    \n- `createdAt` (string): The timestamp when the offer was created.\n    \n- `updatedAt` (string): The timestamp when the offer was last updated.\n    \n- `job` (object): An object containing job details\n    \n- `jobber` (object): An object containing jobber details\n    \n\nYou can look at the example to see what a succesfull response will look like"
+					},
+					"response": [
+						{
+							"name": "Get Offer details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/ld+json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/api/offers/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"offers",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Location",
+									"value": "/api/offers/1.jsonld"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 02:12:07 GMT"
+								},
+								{
+									"key": "Etag",
+									"value": "\"c48e06ce1d7a89d4\""
+								},
+								{
+									"key": "Link",
+									"value": "<http://localhost:8000/api/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "deny"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/api/contexts/Offer\",\n    \"@id\": \"/api/offers/1\",\n    \"@type\": \"Offer\",\n    \"id\": 1,\n    \"amount\": 251.04,\n    \"status\": 2,\n    \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n    \"updatedAt\": \"2024-11-03T02:05:16+00:00\",\n    \"job\": \"/api/jobs/2\",\n    \"jobber\": \"/api/jobbers/2\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Submit an Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 150.00,\n    \"job\": \"/api/jobs/1\",\n    \"jobber\": \"/api/jobbers/1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/offers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"offers"
+							]
+						},
+						"description": "### Create New Offer\n\nThis endpoint allows the client to create a new offer by sending a POST request to the specified URL.\n\n#### Request\n\n- Method: POST\n    \n- URL: `/api/jobs`\n    \n\n##### Body\n\n- `amount` (number) - The amount for the offer.\n    \n- `job` (string) - The URL of the job associated with the offer.\n    \n- `jobber` (string) - The URL of the jobber associated with the offer.\n    \n\nExample:\n\n``` json\n{\n  \"amount\": 150,\n  \"job\": \"/api/jobs/1\",\n  \"jobber\": \"/api/jobbers/1\"\n}\n\n ```\n\n#### Response\n\nThe API returns a JSON response with a status code of 200 and Content-Type of application/ld+json.\n\nThe response body includes the following structure:\n\n- `id` (number) - The unique identifier of the offer.\n    \n- `amount` (number) - The amount of the offer.\n    \n- `status` (number) - The status of the offer.\n    \n- `createdAt` (string) - The timestamp of when the offer was created.\n    \n- `updatedAt` (string) - The timestamp of when the offer was last updated.\n    \n- `job` (string) - The URL of the job associated with the offer.\n    \n- `jobber` (string) - The URL of the jobber associated with the offer.\n    \n\nYou can look at the example to see what a succesfull response will look like"
+					},
+					"response": [
+						{
+							"name": "Submit an Offer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 150.00,\n    \"job\": \"/api/jobs/1\",\n    \"jobber\": \"/api/jobbers/1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/offers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"offers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Location",
+									"value": "/api/offers/7.jsonld"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 02:05:03 GMT"
+								},
+								{
+									"key": "Link",
+									"value": "<http://localhost:8000/api/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "Location",
+									"value": "/api/offers/7"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "deny"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/api/contexts/Offer\",\n    \"@id\": \"/api/offers/7\",\n    \"@type\": \"Offer\",\n    \"id\": 7,\n    \"amount\": 150,\n    \"status\": 1,\n    \"createdAt\": \"2024-11-03T02:05:03+00:00\",\n    \"updatedAt\": \"2024-11-03T02:05:03+00:00\",\n    \"job\": \"/api/jobs/1\",\n    \"jobber\": \"/api/jobbers/1\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Offer details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/offers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"offers",
+								"1"
+							]
+						},
+						"description": "### Update Offer Status\n\nThis endpoint is used to update the status of a specific offer.\n\n#### Request\n\n- Method: PUT\n    \n- URL: /api/offers/{id}\n    \n- Body:\n    \n    - `status` (integer): The new status of the offer.\n        \n\n#### Response\n\nThe API returns a JSON response with a status code of 200 and Content-Type of application/ld+json.\n\nThe response body includes the following structure:\n\n- `id` (number) - The unique identifier of the offer.\n    \n- `amount` (number) - The amount of the offer.\n    \n- `status` (number) - The status of the offer.\n    \n- `createdAt` (string) - The timestamp of when the offer was created.\n    \n- `updatedAt` (string) - The timestamp of when the offer was last updated.\n    \n- `job` (string) - The URL of the job associated with the offer.\n    \n- `jobber` (string) - The URL of the jobber associated with the offer.\n    \n\nYou can look at the example to see what a succesfull response will look like"
+					},
+					"response": [
+						{
+							"name": "Update Offer details",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/offers/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"offers",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Location",
+									"value": "/api/offers/1.jsonld"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Nov 2024 02:05:16 GMT"
+								},
+								{
+									"key": "Link",
+									"value": "<http://localhost:8000/api/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "deny"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/api/contexts/Offer\",\n    \"@id\": \"/api/offers/1\",\n    \"@type\": \"Offer\",\n    \"id\": 1,\n    \"amount\": 251.04,\n    \"status\": 2,\n    \"createdAt\": \"2024-10-31T12:01:39+00:00\",\n    \"updatedAt\": \"2024-11-03T02:05:16+00:00\",\n    \"job\": \"/api/jobs/2\",\n    \"jobber\": \"/api/jobbers/2\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000"
+		}
+	]
+}
