@@ -20,15 +20,15 @@ class Jobber
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(groups: ['jobber:read'])]
+    #[Groups(groups: ['jobber:read', 'job:details'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(groups: ['jobber:read'])]
+    #[Groups(groups: ['jobber:read', 'job:details'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[Groups(groups: ['jobber:read'])]
+    #[Groups(groups: ['jobber:read', 'job:details'])]
     private ?string $email = null;
 
     /**

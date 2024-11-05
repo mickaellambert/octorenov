@@ -31,7 +31,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             description: 'Create a new job and associate it with a customer.'
         ),
     ],
-    normalizationContext: ['groups' => ['job:read']],
+    normalizationContext: ['groups' => ['job:read', 'job:details']],
     denormalizationContext: ['groups' => ['job:write']]
 )]
 #[ApiFilter(SearchFilter::class, properties: ['status' => 'exact'])]
@@ -72,7 +72,7 @@ class Job
      * @var Collection<int, Offer>
      */
     #[ORM\OneToMany(targetEntity: Offer::class, mappedBy: 'job')]
-    #[Groups(['job:read'])]
+    #[Groups(['job:read', "job:details"])]
     private Collection $offers;
 
     public function __construct()

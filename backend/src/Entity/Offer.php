@@ -36,19 +36,19 @@ class Offer
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['offer:read'])]
+    #[Groups(['offer:read', 'job:details'])]
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['offer:read', 'offer:write'])]
+    #[Groups(['offer:read', 'offer:write', 'job:details'])]
     private ?float $amount = null;
 
     #[ORM\Column(type: 'integer', enumType: OfferStatus::class)]
-    #[Groups(['offer:read', 'offer:write'])]
+    #[Groups(['offer:read', 'offer:write', 'job:details'])]
     private OfferStatus $status = OfferStatus::PENDING;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Groups(['offer:read'])]
+    #[Groups(['offer:read', 'job:details'])]
     private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
@@ -62,7 +62,7 @@ class Offer
 
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['offer:read', 'offer:write'])]
+    #[Groups(['offer:read', 'offer:write', 'job:details'])]
     private ?Jobber $jobber = null;
 
     public function getId(): ?int
