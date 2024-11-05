@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getAllByStatus, JobStatus } from '../services/job';
 import { Job } from '../services/job';
-import JobCard from '../components/JobCard';
+import JobCard from '../components/Job/JobCard';
 
 function Jobs() {
     const [jobs, setJobs] = useState([]);

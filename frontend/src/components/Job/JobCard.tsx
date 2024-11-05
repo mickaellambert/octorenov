@@ -1,18 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import './jobCard.css'; 
+import { Job } from '../../services/job';
 
-interface JobInterface {
-    job : {
-        id: number,
-        title: string,
-        description: string,
-        customer: {
-            name: string
-        }
-    }
+interface JobCard {
+    job : Job
 }
 
-function JobCard({ job }: JobInterface) {
+function JobCard({ job }: JobCard) {
     const navigate = useNavigate();
 
     return (
