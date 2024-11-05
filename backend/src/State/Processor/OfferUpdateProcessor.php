@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\Operation;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use ApiPlatform\State\ProcessorInterface;
+use App\Service\OfferUpdateService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -19,16 +20,18 @@ class OfferUpdateProcessor implements ProcessorInterface
     private EntityManagerInterface $entityManager;
     private RequestStack $requestStack;
     private OfferRepository $offerRepository;
+    private OfferUpdateService $offerUpdateService;
 
-    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack, OfferRepository $offerRepository)
+    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack, OfferRepository $offerRepository, OfferUpdateService $offerUpdateService)
     {
         $this->entityManager = $entityManager;
         $this->requestStack = $requestStack;
         $this->offerRepository = $offerRepository;
+        $this->offerUpdateService = $offerUpdateService;
     }
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): Offer
-    {
+    {        
         $offer = $uriVariables['id'] ? $this->offerRepository->find($uriVariables['id']) : null;
 
         if (!$offer instanceof Offer) {
@@ -42,14 +45,6 @@ class OfferUpdateProcessor implements ProcessorInterface
             throw new BadRequestHttpException('Invalid status value.');
         }
 
-        $offer->setStatus(OfferStatus::from($status));
-
-        if ($status === OfferStatus::ACCEPTED) {
-            $offer->getJob()->setStatus(JobStatus::IN_PROGRESS);
-        }
-
-        $this->entityManager->flush();
-
-        return $offer;
+        return $this->offerUpdateService->updateStatus($offer, OfferStatus::from($status));
     }
 }

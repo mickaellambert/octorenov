@@ -19,7 +19,7 @@ class OfferUpdateService
         $this->jobUpdateService = $jobUpdateService;
     }
 
-    public function updateStatus(Offer $offer, OfferStatus $status): void
+    public function updateStatus(Offer $offer, OfferStatus $status): Offer
     {
         $offer->setStatus($status);
         $this->entityManager->flush();
@@ -27,5 +27,7 @@ class OfferUpdateService
         if ($status === OfferStatus::ACCEPTED) {
             $this->jobUpdateService->updateStatus($offer->getJob(), JobStatus::IN_PROGRESS);
         }
+
+        return $offer;
     }
 }
