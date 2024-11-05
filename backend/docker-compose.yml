@@ -15,6 +15,7 @@ services:
       - database
     volumes:
       - .:/var/www/html
+      - /var/www/html/vendor
 
   database:
     image: mysql:8.0
