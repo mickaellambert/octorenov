@@ -1,0 +1,26 @@
+article#job-details {
+    width: 50%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+article#job-details h2 {
+    margin-top: 0px;
+}
+
+article#job-details .job-description {
+    margin-bottom: 20px;
+}
+
+article#job-details .job-customer {
+    color: #777;
+}
+
+article#job-details .offer-list {
+    list-style: none;
+    padding: 0;
+}
