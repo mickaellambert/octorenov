@@ -6,9 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: symfony_app
+    env_file:
+      - .env
     environment:
       - APP_ENV=dev
-      - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@database:3306/${MYSQL_DATABASE}?serverVersion=8.0.32&charset=utf8mb4
+      - DATABASE_URL=${DATABASE_URL}
     ports:
       - "8000:80"
     depends_on:
@@ -24,6 +26,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
