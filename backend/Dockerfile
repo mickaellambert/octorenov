@@ -21,10 +21,18 @@ COPY . /var/www/html
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --optimize-autoloader
 
-# Set permissions
+# Set permissions and switch to non-root user before running composer install
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
+
+# Switch to www-data user for composer install
+USER www-data
+
+# Install dependencies for Symfony as non-root user
+RUN composer install --optimize-autoloader --no-interaction
+
+# Revert to root user to complete remaining setup tasks
+USER root
 
 # Configure DocumentRoot to the public folder
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
