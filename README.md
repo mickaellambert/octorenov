@@ -61,19 +61,13 @@ To start the backend in Docker, stay in the `backend` folder of the app, and the
    docker-compose up -d --build
    ```
 
-2. Run database creation:
-
-   ```bash
-   docker-compose exec app php bin/console doctrine:database:create
-   ```
-
-3. Run database migrations:
+2. Run database migrations:
 
    ```bash
    docker-compose exec app php bin/console doctrine:migrations:migrate
    ```
 
-4. Load data fixtures:
+3. Load data fixtures:
 
    ```bash
    docker-compose exec app php bin/console doctrine:fixtures:load
