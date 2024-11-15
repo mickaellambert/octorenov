@@ -12,6 +12,7 @@ use App\Repository\OfferRepository;
 use ApiPlatform\Metadata\ApiResource;
 use App\State\Processor\OfferUpdateProcessor;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -39,8 +40,14 @@ class Offer
     #[Groups(['offer:read', 'job:details'])]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2, options: ['unsigned' => true])]
     #[Groups(['offer:read', 'offer:write', 'job:details'])]
+    #[Assert\NotNull(message: 'Le montant est requis.')]
+    #[Assert\Type(
+        type: 'numeric',
+        message: 'Amount must be a valid number.'
+    )]
+    #[Assert\Positive(message: 'Amount must be positive.')]
     private ?float $amount = null;
 
     #[ORM\Column(type: 'integer', enumType: OfferStatus::class)]

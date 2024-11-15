@@ -8,7 +8,7 @@ interface OfferFormProps {
 }
 
 function OfferForm({ jobId, setJob }: OfferFormProps) {
-    const [amount, setAmount] = useState<number | ''>('');
+    const [amount, setAmount] = useState<string | ''>('');
     const [message, setMessage] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -20,14 +20,16 @@ function OfferForm({ jobId, setJob }: OfferFormProps) {
         }
 
         try {
-            const newOffer = await createOffer({ jobId, amount: Number(amount) });
+            const newOffer = await createOffer({ jobId, amount: amount });
             setJob((prevState: any) => ({...prevState, offers: [...prevState.offers, newOffer]}))
             setMessage("Your offer has been submitted successfully!");
             setAmount('');
-        } catch (error) {
-            // TODO: Improve error process
-            console.error(error);
-            setMessage("An error occurred while submitting your offer. Please try again.");
+        } catch (error: any) {
+            if (error.status === 422) {
+                setMessage(error.data.violations[0].message);
+            } else {
+                setMessage("An error occurred while submitting your offer. Please try again.");
+            }
         }
     };
 
@@ -38,12 +40,12 @@ function OfferForm({ jobId, setJob }: OfferFormProps) {
                 type="number"
                 id="amount"
                 value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
-                min="0"
+                onChange={(e) => setAmount(e.target.value)}
                 step="0.01"
                 required
             />
             <button type="submit">Submit Offer</button>
+            
             {message && <p className="offer-message">{message}</p>}
         </form>
     );
