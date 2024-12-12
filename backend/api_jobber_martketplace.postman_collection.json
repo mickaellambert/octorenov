@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "605ebcae-6ae5-4b4a-9f6a-a125d1f15e09",
-		"name": "API Octorenov",
-		"description": "API pour la gestion des jobs et offres de la plateforme Octorenov",
+		"name": "API Jobber Marketplace",
+		"description": "API pour la gestion des jobs et offres de la plateforme Jobber Marketplace",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4737023"
 	},
